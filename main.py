@@ -19,6 +19,7 @@ async def ingest(request: Request):
 
     return {"status": "ok"}
 
+# Required entry point
 def start():
     config = uvicorn.Config(app=app, host="0.0.0.0", port=8001, log_level="info")
     server = uvicorn.Server(config)
