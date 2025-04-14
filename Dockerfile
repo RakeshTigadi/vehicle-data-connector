@@ -1,18 +1,18 @@
-# Use official Python base image
+# Use a lightweight Python base image
 FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements first and install dependencies
+# Copy dependency list and install them
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all project files
+# Copy all project files into the container
 COPY . .
 
-# Set environment variable to avoid buffering
-ENV PYTHONUNBUFFERED=1
+# Expose the port that Condense will route to
+EXPOSE 8001
 
-# Run the app using uvicorn with the expected port
+# CMD must start your app correctly
 CMD ["python", "main.py"]
